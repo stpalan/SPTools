@@ -22,11 +22,11 @@ SPClusterSE<-function(Data=NA,Model,ClusterVar1,ClusterVar2=NA,DFCorrection=1){
     require(sandwich, quietly = TRUE)
     require(lmtest, quietly = TRUE)
     if(identical(ClusterVar2,NA)){
-        M <- length(unique(ClusterVar))
-        N <- length(ClusterVar)
+        M <- length(unique(ClusterVar1))
+        N <- length(ClusterVar1)
         K <- Model$rank
         dfc <- (M/(M-1))*((N-1)/(N-K))
-        uj <- apply(estfun(Model),2, function(x) tapply(x, ClusterVar, sum));
+        uj <- apply(estfun(Model),2, function(x) tapply(x, ClusterVar1, sum));
         vcovCL <- dfc*sandwich(Model, meat=crossprod(uj)/N)
         coeftest(Model, vcovCL)
     } else {
