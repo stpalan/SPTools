@@ -4,17 +4,22 @@
 \alias{SPClusterSE}
 \title{SPClusterSE}
 \usage{
-SPClusterSE(Data, Model, ClusterVar)
+SPClusterSE(Data = NA, Model, ClusterVar1, ClusterVar2 = NA,
+  DFCorrection = 1)
 }
 \arguments{
-\item{Data}{A dataframe containing the data the regression is run in.}
+\item{Data}{A dataframe containing the data the regression is run in. Defaults to NA for two-way case.}
 
 \item{Model}{A saved regression model.}
 
-\item{ClusterVar}{The variable to cluster by.}
+\item{ClusterVar1}{The (first) variable to cluster by.}
+
+\item{ClusterVar2}{The second variable to cluster by. Defaults to NA.}
+
+\item{DFCorrection}{A degree of freedom correction when the model was estimated on deviation from group mean data. Defaults to 1.}
 }
 \description{
-Function which calculates clustered standard errors for a regression model. This function is basically a copy of Mahmood Ara's work (http://www.ne.su.se/polopoly_fs/1.216115.1426234213!/menu/standard/file/clustering1.pdf), as described by Kevin Goulding (https://thetarzan.wordpress.com/2011/06/11/clusteredstandarderrorsinr/). The example is also adapted from Kevin's excellent post.
+Function which calculates one-way or two-way clustered standard errors for a regression model. This function is basically a copy of Mahmood Ara's work (http://www.ne.su.se/polopoly_fs/1.216115.1426234213!/menu/standard/file/clustering1.pdf), as described by Kevin Goulding (https://thetarzan.wordpress.com/2011/06/11/clusteredstandarderrorsinr/). The example is also adapted from Kevin's excellent post.
 }
 \examples{
 require(foreign)
