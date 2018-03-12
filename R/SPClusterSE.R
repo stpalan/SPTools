@@ -1,6 +1,6 @@
 #' SPClusterSE
 #'
-#' Function which calculates one-way or two-way clustered standard errors for a regression model. This function is basically a copy of Mahmood Ara's work (http://www.ne.su.se/polopoly_fs/1.216115.1426234213!/menu/standard/file/clustering1.pdf), as described by Kevin Goulding (https://thetarzan.wordpress.com/2011/06/11/clusteredstandarderrorsinr/). The example is also adapted from Kevin's excellent post.
+#' Function which calculates one-way or two-way clustered standard errors for a regression model. This function is basically a copy of Mahmood Ara's work (http://www.ne.su.se/polopoly_fs/1.216115.1426234213!/menu/standard/file/clustering1.pdf), as described by Kevin Goulding (https://thetarzan.wordpress.com/2011/06/11/clustered-standard-errors-in-r/). The example is also adapted from Kevin's excellent post.
 #' @param Data A dataframe containing the data the regression is run in. Defaults to NA for two-way case.
 #' @param Model A saved regression model.
 #' @param ClusterVar1 The (first) variable to cluster by.
