@@ -12,6 +12,8 @@ gmean(x, trim = 0, na.rm = FALSE, zero.propagate = FALSE)
 \item{trim}{the fraction (0 to 0.5) of observations to be trimmed from each end of x before the mean is computed. Values of trim outside that range are taken as the nearest endpoint.}
 
 \item{na.rm}{a logical value indicating whether NA values should be stripped before the computation proceeds.}
+
+\item{zero.propagate}{a logical value indicating whether inputs containing any 0 values should return 0 (zero.propagate == TRUE) or should calculate the geometric mean ignoring any 0 input values (zero.propagate == FALSE).}
 }
 \description{
 Function which calculates the geometric mean analogously to R's built-in mean() function. It catches negative inputs, properly handles zeroes and allows for both NA removal and trimming (again, as in mean()) before processing. Adapted from Paul McMurdie's excellent example at https://stackoverflow.com/questions/2602583/geometric-mean-is-there-a-built-in.

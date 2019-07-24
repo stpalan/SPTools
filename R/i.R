@@ -6,7 +6,6 @@
 #' @keywords increment
 #' @export
 #' @examples
-#' Increments. For example:
 #' x<-5
 #' i(x)
 #' After this operation, x == 6.

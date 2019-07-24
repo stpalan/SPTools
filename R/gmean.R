@@ -4,6 +4,7 @@
 #' @param x An R object. Currently there are methods for numeric/logical vectors and date, date-time and time interval objects. Negative values will return NaN.
 #' @param trim the fraction (0 to 0.5) of observations to be trimmed from each end of x before the mean is computed. Values of trim outside that range are taken as the nearest endpoint.
 #' @param na.rm a logical value indicating whether NA values should be stripped before the computation proceeds.
+#' @param zero.propagate a logical value indicating whether inputs containing any 0 values should return 0 (zero.propagate == TRUE) or should calculate the geometric mean ignoring any 0 input values (zero.propagate == FALSE).
 #' @keywords geometric mean
 #' @export
 #' @examples
