@@ -15,7 +15,7 @@
 #' regt = lm(nevermar ~ impdum, data = nmar)
 #' # apply the 'SPClusterSE' function by choosing a variable to cluster on.
 #' # here, we are clustering on state.
-#' SPClusterSE(nmar, regt, nmar$state)
+#' SPClusterSE(Data=nmar, Model=regt, ClusterVar1=nmar$state)
 
 
 SPClusterSE<-function(Data=NA,Model,ClusterVar1,ClusterVar2=NA,DFCorrection=1){

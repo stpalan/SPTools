@@ -28,7 +28,7 @@ nmar = read.dta("http://www.montana.edu/econ/cstoddard/562/wr-nevermar.dta")
 regt = lm(nevermar ~ impdum, data = nmar)
 # apply the 'SPClusterSE' function by choosing a variable to cluster on.
 # here, we are clustering on state.
-SPClusterSE(nmar, regt, nmar$state)
+SPClusterSE(Data=nmar, Model=regt, ClusterVar1=nmar$state)
 }
 \keyword{clustered}
 \keyword{errors}
