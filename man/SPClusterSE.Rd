@@ -4,8 +4,7 @@
 \alias{SPClusterSE}
 \title{SPClusterSE}
 \usage{
-SPClusterSE(Data = NA, Model, ClusterVar1, ClusterVar2 = NA,
-  DFCorrection = 1)
+SPClusterSE(Data = NA, Model, ClusterVar1, ClusterVar2 = NA, DFCorrection = 1)
 }
 \arguments{
 \item{Data}{A dataframe containing the data the regression is run in. Defaults to NA for two-way case.}
