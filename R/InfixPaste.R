@@ -7,7 +7,7 @@
 #' @export
 #' @examples
 #' z<-5
-#' "The result is: " %§% z %§% "."
+#' "The result is: " %!% z %!% "."
 #' > The result is 5.
 
-"%§%" = function(x,y) paste(x,y,sep="")
+"%!%" = function(x,y) paste(x,y,sep="")
