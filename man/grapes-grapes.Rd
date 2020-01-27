@@ -2,7 +2,7 @@
 % Please edit documentation in R/InfixPaste.R
 \name{\%§\%}
 \alias{\%§\%}
-\title{%§%}
+\title{Paste without separator - infix operator}
 \usage{
 x \%§\% y
 }

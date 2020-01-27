@@ -1,4 +1,4 @@
-#' %§%
+#' Paste without separator - infix operator
 #'
 #' Infix operator to combine strings. Equivalent to paste(..., sep="").
 #' @param x An object of type character.
