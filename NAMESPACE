@@ -2,6 +2,7 @@
 
 export("%_%")
 export(SPClusterSE)
+export(SPLoadPackages)
 export(SPNum)
 export(SPPause)
 export(SPSubset)
