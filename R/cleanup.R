@@ -1,6 +1,7 @@
 #' cleanup
 #'
 #' Function which cleans up the GlobalEnv by removing all objects whose name commences with "t."
+#' @param pattern A character vector containing the RegEx pattern of the object names to remove. Make sure to surround names by "^...$" if you want to match the name exactly.
 #' @keywords rm
 #' @export
 #' @examples
@@ -9,7 +10,7 @@
 #' one can write
 #' cleanup()
 
-cleanup<-function(){
+cleanup<-function(pattern="^t."){
     objs <- ls(pos = ".GlobalEnv")
-    rm(list = objs[grep("^t.", objs)], pos = ".GlobalEnv")
+    rm(list = objs[grep(pattern, objs)], pos = ".GlobalEnv")
 }
