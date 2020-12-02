@@ -4,7 +4,7 @@
 \alias{cleanup}
 \title{cleanup}
 \usage{
-cleanup(pattern = "^t.")
+cleanup(pattern = "^t[.]")
 }
 \arguments{
 \item{pattern}{A character vector containing the RegEx pattern of the object names to remove. Make sure to surround names by "^...$" if you want to match the name exactly.}

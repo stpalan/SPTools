@@ -10,7 +10,7 @@
 #' one can write
 #' cleanup()
 
-cleanup<-function(pattern="^t."){
+cleanup<-function(pattern="^t[.]"){
     objs <- ls(pos = ".GlobalEnv")
     rm(list = objs[grep(pattern, objs)], pos = ".GlobalEnv")
 }
