@@ -7,15 +7,18 @@
 cleanup(pattern = "^t[.]")
 }
 \arguments{
-\item{pattern}{A character vector containing the RegEx pattern of the object names to remove. Make sure to surround names by "^...$" if you want to match the name exactly.}
+\item{pattern}{A character vector containing the RegEx patterns of the object names to remove. Make sure to surround names by "^...$" if you want to match the name exactly.}
 }
 \description{
 Function which cleans up the GlobalEnv by removing all objects whose name commences with "t."
 }
 \examples{
 Instead of writing:
-rm(list=ls(pattern="^t."))
+rm(list=ls(pattern="^t[.]"))
 one can write
 cleanup()
+
+You can also expressly specify objects to clean up:
+cleanup(c("^temp_var$","^x$"))
 }
 \keyword{rm}
