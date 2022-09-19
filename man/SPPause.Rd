@@ -12,6 +12,7 @@ This function is derived from https://diego.assencio.com/?index=86c137b502561d44
 }
 \examples{
 SPPause()
+
 }
 \keyword{keypress}
 \keyword{pause,}

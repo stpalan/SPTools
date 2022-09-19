@@ -22,6 +22,7 @@ Function to calculate the geometric mean analogously to R's built-in mean() func
 x <- c(0:10, 50)
 xgm <- gmean(x)
 c(xgm, gmean(x, trim = 0.10))
+
 }
 \keyword{geometric}
 \keyword{mean}

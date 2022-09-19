@@ -6,16 +6,12 @@
 #' @export
 #' @examples
 #' SPPause()
-
-SPPause = function()
-{
-    if (interactive())
-    {
-        invisible(readline(prompt = "Press <Enter> to continue..."))
-    }
-    else
-    {
-        cat("Press <Enter> to continue...")
-        invisible(readLines(file("stdin"), 1))
-    }
+#'
+SPPause <- function() {
+  if (interactive()) {
+    invisible(readline(prompt = "Press <Enter> to continue..."))
+  } else {
+    cat("Press <Enter> to continue...")
+    invisible(readLines(file("stdin"), 1))
+  }
 }

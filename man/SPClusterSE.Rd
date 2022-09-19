@@ -22,12 +22,13 @@ Function which calculates one-way or two-way clustered standard errors for a reg
 }
 \examples{
 require(foreign)
-nmar = read.dta("https://www.montana.edu/cstoddard/562/wr-nevermar.dta")
+nmar <- read.dta("https://www.montana.edu/cstoddard/562/wr-nevermar.dta")
 # Run a plain linear regression
-regt = lm(nevermar ~ impdum, data = nmar)
+regt <- lm(nevermar ~ impdum, data = nmar)
 # apply the 'SPClusterSE' function by choosing a variable to cluster on.
 # here, we are clustering on state.
-SPClusterSE(Data=nmar, Model=regt, ClusterVar1=nmar$state)
+SPClusterSE(Data = nmar, Model = regt, ClusterVar1 = nmar$state)
+
 }
 \keyword{clustered}
 \keyword{errors}
