@@ -10,6 +10,8 @@
 #' @param xlab horizontal axis title
 #' @param ylab vertical axis title
 #' @param precision step-width and distance from 1 for compatibility intervals to plot
+#' @param digits.x significant digits for x-axis labels
+#' @param digits.y significant digits for y-axis labels
 #' @keywords
 #' @export
 #' @examples
@@ -23,11 +25,12 @@ x <- c(1,2,3,4,4,5)
 FUN<-t.test
 test.args<-list(mu=3)
 conf.levels <- c(0.95, 0.99)
-ylim<-c(0.8,1)
+ylim<-c(0.85,1)
 xlab<-"value"
 ylab<-"compatibility level"
 precision<-0.001
-digits.mu<-3
+digits.x<-3
+digits.y<-4
 
 
 compat.plot <- function(x,
@@ -35,11 +38,12 @@ compat.plot <- function(x,
                         test.args,
                         ...,
                         conf.levels = c(0.95, 0.99),
-                        ylim=c(0.8,1),
+                        ylim=c(0.85,1),
                         xlab="value",
                         ylab="compatibility level",
                         precision=0.001,
-                        digits.mu=5) {
+                        digits.x=5,
+                        digits.y=3) {
 
 
   # Checks ------------------------------------------------------------------
@@ -102,41 +106,48 @@ compat.plot <- function(x,
 # Plot --------------------------------------------------------------------
 
   plot<-ggplot(data=d, aes(x=value,y=comp.level,group=name))+
-    #scale_x_continuous(name=xlab)+ # Axis title
-    scale_y_continuous(name=ylab, # Axis title
-                       trans="reverse", # Reverses axis order
-                       limits=c(max(ylim),min(ylim)))+ # Specifies axis limits
     geom_segment(aes(x=sample.mean,xend=sample.mean,y=min(ylim),yend=max(ylim)),lwd=0.75)+ # Adds vertical line at point estimate
     # Note: aes is necessary because axis transformation is applied first
     #geom_text(aes(x = sample.mean, y = min(ylim)), label = paste(expression(mu),": ", format(sample.mean,digits=digits.mu),sep=""), vjust = -0.5, cex=4, parse = T)+
     geom_line(lwd=1)
 
-  # Defines custom x-axis breaks
+  # Defines custom axis breaks
   breaks.x<-numeric() #layer_scales(plot)$x$get_breaks()
   breaks.x<-c(breaks.x[!is.na(breaks.x)],as.numeric(sample.mean))
+  breaks.y<-layer_scales(plot)$y$get_breaks()
 
   # Adds reference lines for confidence levels
+  temp.x.lower<-numeric()
+  temp.x.upper<-numeric()
   for (fL in conf.levels){
     temp.x.lower<-head(d$value[d$comp.level==fL & d$name=="lower"],1)
     temp.x.upper<-head(d$value[d$comp.level==fL & d$name=="upper"],1)
-    plot <- plot +
-      geom_segment(aes(x=min(value),xend=temp.x.upper,y=fL,yend=fL),lwd=0.5, lty=2)+ # Adds horizontal line at confidence level
-      geom_segment(aes(x=temp.x.lower,xend=temp.x.lower,y=fL,yend=1),lwd=0.5, lty=2)+ # Adds vertical line at confidence level lower boundary
-      geom_segment(aes(x=temp.x.upper,xend=temp.x.upper,y=fL,yend=1),lwd=0.5, lty=2) # Adds vertical line at confidence level upper boundary
 
-    # Adds custom x-axis breaks
-    breaks.x<-c(breaks.x,temp.x.lower,temp.x.upper)
+    plot <- plot +
+      annotate("segment", x = min(d$value), xend = temp.x.upper,y = fL, yend = fL, lwd=0.5, lty=2, col=match(fL, conf.levels)+1) +
+      annotate("segment", x = temp.x.lower, xend = temp.x.lower,y = fL, yend = 1, lwd=0.5, lty=2, col=match(fL, conf.levels)+1) +
+      annotate("segment", x = temp.x.upper, xend = temp.x.upper,y = fL, yend = 1, lwd=0.5, lty=2, col=match(fL, conf.levels)+1)
+
+    # Adds custom axis breaks for confidence level reference lines
+    breaks.x<-c(breaks.x,tail(temp.x.lower,1),tail(temp.x.upper,1))
+    breaks.y<-c(breaks.y,fL)
   }
 
-  # Applies custom x-axis breaks
-  breaks.x<-signif(breaks.x[order(breaks.x)],digits.mu)
+  # Applies custom axis breaks
+  breaks.x<-signif(breaks.x[order(breaks.x)],digits.x)
+  breaks.y<-signif(breaks.y[order(breaks.y)],digits.y)
   plot <- plot +
-    scale_x_continuous(name=xlab, breaks=breaks.x) +
-    theme(panel.grid.minor = element_blank())
+    scale_x_continuous(name=xlab, # Axis title
+                       breaks=breaks.x) + # Axis breaks
+    scale_y_continuous(name=ylab, # Axis title
+                       trans="reverse", # Reverses axis order
+                       limits=c(max(ylim),min(ylim)), # Axis limits
+                       breaks=breaks.y)+ # Axis breaks
+    theme(panel.grid.minor = element_blank()) # Removes default grid lines
 
   plot
 
 
-  ggsave(plot = plot, filename = "D:/periodical/compat_plot.png", width = 600, height = 600, units = "px", dpi = 150)
+  ggsave(plot = plot, filename = "D:/periodical/compat_plot.png", width = 900, height = 700, units = "px", dpi = 180)
 
 }
