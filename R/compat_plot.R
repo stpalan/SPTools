@@ -14,7 +14,7 @@
 #' @param digits.x significant digits for x-axis labels
 #' @param digits.y significant digits for y-axis labels
 #' @param file.name fully qualified file name for graph output file. If not specified, no image file is produced.
-#' @keywords
+#' @keywords hypothesis testing, compatibility plot, ggplot2
 #' @export
 #' @examples
 #' Instead of writing, for example:
@@ -26,7 +26,7 @@
 x <- c(1,2,3,4,4,5)
 y <- NULL
 FUN<-t.test
-test.args<-list(mu=3)
+test.args<-list(x=x,mu=3)
 conf.levels <- c(0.95, 0.99)
 ylim<-c(0.85,1)
 xlab<-"Value"
@@ -48,6 +48,8 @@ compat.plot <- function(FUN,
                         digits.x=5,
                         digits.y=3,
                         file.name=NA) {
+
+  # compat.plot(FUN, test.args, conf.levels = c(0.95, 0.99), ylim=c(0.85,1), xlab=NA, ylab="Compatibility level", precision=0.001, digits.x=5, digits.y=3, file.name=NA)
 
 
   # Checks ------------------------------------------------------------------
